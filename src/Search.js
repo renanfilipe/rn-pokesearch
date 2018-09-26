@@ -23,7 +23,9 @@ class Search extends React.Component {
 				});
 			})
 			.catch(function(error) {
-				console.log(error)
+				console.log(error);
+				self.setState({data: undefined});
+				self.setState({onCall: false});
 			});
 	};
 
@@ -43,7 +45,7 @@ class Search extends React.Component {
 
 	render() {
 		return (
-			<View>
+			<View style={{flex: 1}}>
 				<Header
 					searchBar
 					rounded
