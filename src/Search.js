@@ -8,14 +8,22 @@ import axios from "axios";
 class Search extends React.Component {
 	state = {
 		pokeSearch: "",
-		onCall: true
+		onCall: true,
+		data: {}
 	};
 
 	searchPoke = () => {
 		this.setState({onCall: true});
+		const self = this;
 		axios.get(`http://pokeapi.co/api/v2/pokemon/${this.state.pokeSearch.toLowerCase()}`)
-			.then(function(response){
-				console.log(response.data)
+			.then(function(response) {
+				self.setState({
+					data: response.data,
+					onCall: false
+				});
+			})
+			.catch(function(error) {
+				console.log(error)
 			});
 	};
 
@@ -26,7 +34,9 @@ class Search extends React.Component {
 			);
 		} else {
 			return (
-				<SearchBody/>
+				<SearchBody
+					data={this.state.data}
+				/>
 			);
 		}
 	};
