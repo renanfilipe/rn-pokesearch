@@ -1,7 +1,7 @@
 import React from 'react';
 import Expo from 'expo';
 import {View, Platform} from 'react-native';
-import Landing from "./src/landing";
+import Landing from "./src/Landing";
 import Search from "./src/Search";
 
 export default class App extends React.Component {
