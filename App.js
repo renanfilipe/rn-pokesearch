@@ -1,9 +1,7 @@
 import React from 'react';
 import Expo from 'expo';
-import { View, Platform, ImageBackground } from 'react-native';
-import { Text, Button } from 'native-base';
-
-const myBackground = require("./assets/icons/landing.jpg");
+import {View, Platform} from 'react-native';
+import Landing from "./src/landing";
 
 export default class App extends React.Component {
 	state = {
@@ -26,25 +24,7 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-				<ImageBackground
-					source={myBackground}
-					style={styles.backgroundImage}
-				>
-					<View style={styles.viewStyle}>
-						<Text style={styles.titleStyle}>
-							Welcome to PokeSearch
-						</Text>
-						<Button
-							block={true}
-							style={styles.buttonStyle}
-							onPress={() => {}}
-						>
-							<Text style={styles.buttonText}>
-								Start Searching
-							</Text>
-						</Button>
-					</View>
-				</ImageBackground>
+				<Landing/>
       </View>
     );
   }
@@ -54,26 +34,5 @@ const styles = {
   container: {
     flex: 1,
     marginTop: Platform.OS === 'android' ? 24 : 0,
-  },
-	viewStyle: {
-  	flex: 1,
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center"
-	},
-	backgroundImage : {
-		width: '100%',
-		height: '100%',
-	},
-	titleStyle: {
-  	fontSize: 30,
-		color: "blue",
-		alignItems: "center",
-	},
-	buttonStyle: {
-  	margin: 10,
-	},
-	buttonText: {
-  	color: "white"
-	}
+  }
 };
