@@ -2,9 +2,11 @@ import React from 'react';
 import Expo from 'expo';
 import {View, Platform} from 'react-native';
 import Landing from "./src/landing";
+import Search from "./src/Search";
 
 export default class App extends React.Component {
 	state = {
+		currentScreen: "search",
 		isReady: false
   };
 
@@ -17,6 +19,22 @@ export default class App extends React.Component {
 		this.setState({ isReady: true });
 	}
 
+	switchScreen = (currentScreen) => {
+		this.setState({ currentScreen });
+	};
+
+	renderScreen = () => {
+  	if (this.state.currentScreen === "landing") {
+  	  return (
+  	  	<Landing switchScreen={this.switchScreen}/>
+	    )
+	  } else if (this.state.currentScreen === "search") {
+  		return (
+  			<Search/>
+		  );
+	  }
+	};
+
   render() {
 	  if (!this.state.isReady) {
 		  return <Expo.AppLoading />;
@@ -24,7 +42,7 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-				<Landing/>
+	      {this.renderScreen()}
       </View>
     );
   }
